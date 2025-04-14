@@ -54,10 +54,6 @@ class CameraService {
 
   CameraController? get controller => _controller;
 
-  // void dispose() {
-  //   // _controller?.dispose();
-  //   _controller?.stopImageStream();
-  // }
   void dispose() {
     if (_controller != null && _controller!.value.isInitialized) {
       try {
