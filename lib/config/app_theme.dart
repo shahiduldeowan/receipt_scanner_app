@@ -4,17 +4,17 @@ class AppColors {
   static const Color errorColor = Color(0xFFFF494C);
   static const Color fontDarkColor = Color(0xFF0D101C);
   static const Color fontSlateGray = Color(0xFF6E7591);
-  static const Color gradientRightColor = Color(0xFFDFE4F1);
-  static const Color greenColor = Color(0xFF009F76);
-  static const Color iceGray = Color(0xFFF0F2F8);
-  static const Color iconStoneGray = Color(0xFF93989D);
+  static const Color gradientRightColor = Color(0xFF1A1D23);
+  static const Color greenColor = Color(0xFF34C759);
+  static const Color iceGray = Color(0xFF2F343A);
+  static const Color iconStoneGray = Color(0xFF4F525A);
   static const Color onErrorColor = Color(0xFF6D7491);
-  static const Color onPrimaryColor = Color(0xFF0D101C);
+  static const Color onPrimaryColor = Color(0xFFFFFFFF);
   static const Color primaryColor = Color(0xFF613BE7);
-  static const Color primaryContainerColor = Color(0xFFFFFFFF);
-  static const Color appBorderGay = Color(0xFFDCE1EF);
+  static const Color primaryContainerColor = Color(0xFF1A1D23);
+  static const Color appBorderGay = Color(0xFF2F343A);
 
-  static final ColorScheme lightColorScheme = const ColorScheme.light(
+  static final ColorScheme darkColorScheme = const ColorScheme.dark(
     primary: primaryColor,
     primaryContainer: primaryContainerColor,
     onError: onErrorColor,
@@ -26,18 +26,18 @@ class ThemeHelper {
   static ThemeData get theme => ThemeData(
     useMaterial3: true,
     visualDensity: VisualDensity.standard,
-    colorScheme: AppColors.lightColorScheme,
+    colorScheme: AppColors.darkColorScheme,
     scaffoldBackgroundColor: AppColors.gradientRightColor,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppColors.primaryColor,
-      foregroundColor: AppColors.primaryContainerColor,
+      foregroundColor: AppColors.onPrimaryColor,
       elevation: 6,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     ),
   );
 }
 
-class LightCodeColors {
+class DarkCodeColors {
   Color get darkBlack => AppColors.fontDarkColor;
   Color get slateGray => AppColors.fontSlateGray;
   Color get stoneGray => AppColors.iconStoneGray;
