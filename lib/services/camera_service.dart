@@ -2,11 +2,13 @@ import 'package:camera/camera.dart';
 import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+typedef FrameCallback = void Function(CameraImage image);
+
 @lazySingleton
 class CameraService {
   CameraController? _controller;
 
-  Future<CameraController?> initCamera() async {
+  Future<CameraController?> initCamera({FrameCallback? onFrame}) async {
     try {
       final cameras = await availableCameras();
       final backCamera = cameras.firstWhere(
@@ -16,9 +18,15 @@ class CameraService {
         backCamera,
         ResolutionPreset.medium,
         enableAudio: false,
+        imageFormatGroup: ImageFormatGroup.yuv420,
       );
       await _ensureCameraPermission();
       await _controller?.initialize();
+
+      if (onFrame != null) {
+        _controller?.startImageStream(onFrame);
+      }
+
       return _controller;
     } on CameraException {
       print('Error: Camera initialization failed');
@@ -48,6 +56,7 @@ class CameraService {
 
   void dispose() {
     _controller?.dispose();
+    _controller?.stopImageStream();
   }
 }
 
